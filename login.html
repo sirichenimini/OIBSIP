@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Authentication System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin: 0 auto;
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Login Page</h2>
+
+<form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <input type="submit" value="Login">
+</form>
+
+<div id="message"></div>
+
+<script>
+    // Sample user credentials (you can replace this with your own database)
+    const users = [
+        { username: "user1", password: "password1" },
+        { username: "user2", password: "password2" }
+    ];
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get username and password from form
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Check if username and password match any user
+        const user = users.find(u => u.username === username && u.password === password);
+
+        if (user) {
+            // Successful login
+            document.getElementById("message").textContent = "Login successful!";
+            // Redirect to a secured page (for demonstration purposes, just alerting)
+            alert("Welcome, " + username + "!");
+            // You can redirect to another page using window.location.href = "secured-page.html";
+        } else {
+            // Failed login
+            document.getElementById("message").textContent = "Invalid username or password!";
+        }
+    });
+</script>
+
+</body>
+</html>
